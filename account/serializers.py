@@ -14,9 +14,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', "phone", "password")
         extra_kwargs = {"id": {"read_only": True}}
 
-    def get_token(self, instance):
-        return instance.token()
-
     def create(self, validated_data):
         password = validated_data.get('password')
         user = User.objects.create(**validated_data)
@@ -52,3 +49,4 @@ class LoginSerializer(TokenObtainPairSerializer):
             'username': user.username,
         }
         return attrs
+        
