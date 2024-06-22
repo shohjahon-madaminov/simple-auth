@@ -12,7 +12,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', "phone", "password")
-        extra_kwargs = {"id": {"read_only": True}}
 
     def create(self, validated_data):
         password = validated_data.get('password')
